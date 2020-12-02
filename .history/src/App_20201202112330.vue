@@ -1,8 +1,6 @@
 <template>
-
   <div id="app">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <v-app id="container">
+    <v-app>
 
       <h1>טופס קליטת ת"ש</h1>
 
@@ -74,13 +72,9 @@
           required
         ></v-checkbox>
 
-      
-      </v-form>
-    </v-app>
       <div class="upload">
         
-        <!-- <v-file-input 
-                id="input-files" v-model="files" show-size counter  chips label="העלאת קבצים"></v-file-input>
+        <v-file-input v-model="files" show-size counter  chips label="העלאת קבצים"></v-file-input>
 
         <v-btn
           color="blue"
@@ -88,10 +82,9 @@
           @click="uploadFile"
         >
           העלה קובץ
-        </v-btn> -->
-        <iframe src="https://appload-files.herokuapp.com/" frameborder="0" style="width: 20rem; height: 10rem"></iframe>
+        </v-btn>
       </div>
-      <v-app class="btn-group">        
+      <div class="btn-group">        
         <v-btn  
           color="success"
           class="mr-4"
@@ -99,15 +92,24 @@
         >
           שלח
         </v-btn>
-      </v-app>
+      </div>
+      
+      </v-form>
+    </v-app>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'App',
+  mounted(){
+    this.loginUser()
+  },
   
   data: () => ({
+
     familySelect: '',
     haveKidsSelect: '',
     livingWithSelect: '',
@@ -162,8 +164,49 @@ export default {
     checkbox: false,
   }),
   methods: {
+    loginUser(){
+      
+    // login
+    const data = JSON.stringify({"password":"passward","email":"natanhelp@gmail.com"});
+
+    const config = {
+      method: 'post',
+      url: 'https://nat-task-manager.herokuapp.com/users/login',
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+
+    axios(config)
+      .then((response) => {
+        this.userToken = response.data.token
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+    },
     validate () {
       this.$refs.form.validate()
+    },
+    async uploadFile() {
+      // handle file changes
+      const formData = new FormData();
+
+      if (!this.files.size) return;
+
+      // append the files to FormData
+      formData.append(this.files.name, this.files, this.files.name);
+      // formData.append('file', buffer);
+      const BASE_URL = 'https://nat-task-manager.herokuapp.com/';
+
+      const url = `${BASE_URL}/users/me/avatar`;
+      return axios.post(url, formData)
+          // get data
+          .then(x => x.data)
+          // add url field
+          // .then(x => x.map(img => Object.assign({},
+          //     img, { url: `${BASE_URL}/images/${img.id}` })))
     }
   },
 }
@@ -177,10 +220,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 form
@@ -205,28 +244,20 @@ form
 .btn-group{
   width: 100%;
   padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 .upload
 {
   display: flex;
   flex-direction: row;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 20rem;
 } 
 
 @media screen and (max-width: 500px) {
   .upload
   {
     flex-direction: column;
-    width: 100vw;
+    width: 100%;
     justify-content: center;
     align-items: center;
   }
@@ -234,20 +265,5 @@ form
   {
     width: 20rem;
   }
-}
-
-div.preview-images > img {
-  width: 30%;
-}
-
-#container > div
-{
-  max-height: 73vh;
-  min-height: 0%;
-}
-#app 
-#app > div
-{
-  min-height: 0%;
 }
 </style>

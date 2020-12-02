@@ -11,11 +11,8 @@
   "dependencies": {
     "axios": "^0.21.0",
     "core-js": "^3.6.5",
-    "dns": "^0.2.2",
-    "module": "^1.2.5",
     "mongoose": "^5.11.1",
     "multer": "^1.4.2",
-    "multer-gridfs-storage": "^4.2.0",
     "vue": "^2.6.11",
     "vuetify": "^2.3.19"
   },
@@ -26,7 +23,6 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
-    "nodemon": "^2.0.6",
     "sass": "^1.19.0",
     "sass-loader": "^8.0.0",
     "vue-cli-plugin-vuetify": "~2.0.7",

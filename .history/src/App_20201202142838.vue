@@ -242,7 +242,7 @@ div.preview-images > img {
 
 #container > div
 {
-  max-height: 73vh;
+  max-height: 75vh;
   min-height: 0%;
 }
 #app 

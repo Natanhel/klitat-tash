@@ -2,7 +2,7 @@
 
   <div id="app">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <v-app id="container">
+    <v-app>
 
       <h1>טופס קליטת ת"ש</h1>
 
@@ -74,9 +74,6 @@
           required
         ></v-checkbox>
 
-      
-      </v-form>
-    </v-app>
       <div class="upload">
         
         <!-- <v-file-input 
@@ -89,21 +86,43 @@
         >
           העלה קובץ
         </v-btn> -->
-        <iframe src="https://appload-files.herokuapp.com/" frameborder="0" style="width: 20rem; height: 10rem"></iframe>
+        <iframe src="http://localhost:3000/" frameborder="0" style="width: 400px; height: 300px"></iframe>
       </div>
-      <v-app class="btn-group">        
-        <v-btn  
-          color="success"
-          class="mr-4"
-          @click="validate"
-        >
-          שלח
-        </v-btn>
-      </v-app>
+      
+      </v-form>
+    </v-app>
   </div>
 </template>
 
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        let imagesPreview = function(input, placeToInsertImagePreview) {
+          if (input.files) {
+            let filesAmount = input.files.length;
+            for (i = 0; i < filesAmount; i++) {
+              let reader = new FileReader();
+              reader.onload = function(event) {
+                $($.parseHTML("<img>"))
+                  .attr("src", event.target.result)
+                  .appendTo(placeToInsertImagePreview);
+              };
+              reader.readAsDataURL(input.files[i]);
+            }
+          }
+        };
+        $("#input-files").on("change", function() {
+          imagesPreview(this, "div.preview-images");
+        });
+      });
+    </script>
+
 <script>
+// import mongoose from 'mongoose';
+import axios from 'axios';
+
 export default {
   name: 'App',
   
@@ -161,6 +180,10 @@ export default {
     ],
     checkbox: false,
   }),
+  mounted(){
+    this.mongooseConnect()
+    this.loginUser()
+  },
   methods: {
     validate () {
       this.$refs.form.validate()
@@ -177,10 +200,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 form
@@ -205,10 +224,6 @@ form
 .btn-group{
   width: 100%;
   padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 .upload
@@ -216,17 +231,13 @@ form
   display: flex;
   flex-direction: row;
   width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 } 
 
 @media screen and (max-width: 500px) {
   .upload
   {
     flex-direction: column;
-    width: 100vw;
+    width: 100%;
     justify-content: center;
     align-items: center;
   }
@@ -236,18 +247,7 @@ form
   }
 }
 
-div.preview-images > img {
-  width: 30%;
-}
-
-#container > div
-{
-  max-height: 73vh;
-  min-height: 0%;
-}
-#app 
-#app > div
-{
-  min-height: 0%;
-}
+      div.preview-images > img {
+        width: 30%;
+      }
 </style>

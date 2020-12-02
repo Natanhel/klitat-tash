@@ -2,7 +2,7 @@
 
   <div id="app">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <v-app id="container">
+    <v-app>
 
       <h1>טופס קליטת ת"ש</h1>
 
@@ -74,9 +74,6 @@
           required
         ></v-checkbox>
 
-      
-      </v-form>
-    </v-app>
       <div class="upload">
         
         <!-- <v-file-input 
@@ -89,25 +86,52 @@
         >
           העלה קובץ
         </v-btn> -->
-        <iframe src="https://appload-files.herokuapp.com/" frameborder="0" style="width: 20rem; height: 10rem"></iframe>
+        <iframe src="http://localhost:3000/" frameborder="0" style="width: 800px; height: 300px"></iframe>
       </div>
-      <v-app class="btn-group">        
-        <v-btn  
-          color="success"
-          class="mr-4"
-          @click="validate"
-        >
-          שלח
-        </v-btn>
-      </v-app>
+      
+      </v-form>
+    </v-app>
   </div>
 </template>
 
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        let imagesPreview = function(input, placeToInsertImagePreview) {
+          if (input.files) {
+            let filesAmount = input.files.length;
+            for (i = 0; i < filesAmount; i++) {
+              let reader = new FileReader();
+              reader.onload = function(event) {
+                $($.parseHTML("<img>"))
+                  .attr("src", event.target.result)
+                  .appendTo(placeToInsertImagePreview);
+              };
+              reader.readAsDataURL(input.files[i]);
+            }
+          }
+        };
+        $("#input-files").on("change", function() {
+          imagesPreview(this, "div.preview-images");
+        });
+      });
+    </script>
+
 <script>
+// import mongoose from 'mongoose';
+import axios from 'axios';
+
 export default {
   name: 'App',
+  mounted(){
+    this.mongooseConnect()
+    this.loginUser()
+  },
   
   data: () => ({
+
     familySelect: '',
     haveKidsSelect: '',
     livingWithSelect: '',
@@ -162,8 +186,65 @@ export default {
     checkbox: false,
   }),
   methods: {
+    loginUser(){
+      
+    // login
+    const data = JSON.stringify({"password":"passward","email":"natanhelp@gmail.com"});
+
+    const config = {
+      method: 'post',
+      url: 'https://nat-task-manager.herokuapp.com/users/login',
+      headers: { 
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+
+    axios(config)
+      .then((response) => {
+        this.userToken = response.data.token
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+    },
     validate () {
       this.$refs.form.validate()
+    },
+    uploadFile() {      
+      // document.ready(function() {
+        let imagesPreview = function(input, placeToInsertImagePreview) {
+          if (input.files) {
+            let filesAmount = input.files.length;
+            for (let i = 0; i < filesAmount; i++) {
+              let reader = new FileReader();
+              reader.onload = function(event) {
+                document.parseHTML("<img>")
+                  .attr("src", event.target.result)
+                  .appendTo(placeToInsertImagePreview);
+              };
+              reader.readAsDataURL(input.files[i]);
+            }
+          }
+        };
+        document.getElementById("input-files").on("change", function() {
+          imagesPreview(this, "div.preview-images");
+        });
+      // });
+    },
+    getFile(){
+      
+    },
+    mongooseConnect(){
+      // const connectionURL = process.env.MONGODB_URL
+      // const connectionURL = 'mongodb+srv://taskapp:v1s774roecm@cluster0.r2ica.mongodb.net/test'
+
+      // mongoose.connect(connectionURL, {
+      //   useNewUrlParser: true,
+      //   useCreateIndex: true,
+      //   useUnifiedTopology: true,
+      //   useFindAndModify: false
+      // })
     }
   },
 }
@@ -177,10 +258,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 form
@@ -205,28 +282,20 @@ form
 .btn-group{
   width: 100%;
   padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 .upload
 {
   display: flex;
   flex-direction: row;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 20rem;
 } 
 
 @media screen and (max-width: 500px) {
   .upload
   {
     flex-direction: column;
-    width: 100vw;
+    width: 100%;
     justify-content: center;
     align-items: center;
   }
@@ -236,18 +305,7 @@ form
   }
 }
 
-div.preview-images > img {
-  width: 30%;
-}
-
-#container > div
-{
-  max-height: 73vh;
-  min-height: 0%;
-}
-#app 
-#app > div
-{
-  min-height: 0%;
-}
+      div.preview-images > img {
+        width: 30%;
+      }
 </style>

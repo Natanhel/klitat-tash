@@ -91,7 +91,7 @@
         </v-btn> -->
         <iframe src="https://appload-files.herokuapp.com/" frameborder="0" style="width: 20rem; height: 10rem"></iframe>
       </div>
-      <v-app class="btn-group">        
+      <div class="btn-group">        
         <v-btn  
           color="success"
           class="mr-4"
@@ -99,7 +99,7 @@
         >
           שלח
         </v-btn>
-      </v-app>
+      </div>
   </div>
 </template>
 
@@ -226,7 +226,7 @@ form
   .upload
   {
     flex-direction: column;
-    width: 100vw;
+    width: 100%;
     justify-content: center;
     align-items: center;
   }
@@ -242,12 +242,7 @@ div.preview-images > img {
 
 #container > div
 {
-  max-height: 73vh;
-  min-height: 0%;
-}
-#app 
-#app > div
-{
+  max-height: 80vh;
   min-height: 0%;
 }
 </style>
