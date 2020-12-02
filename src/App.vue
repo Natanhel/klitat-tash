@@ -5,8 +5,8 @@
     <v-app id="container">
 
       <h1>טופס קליטת ת"ש</h1>
-
-      <v-form
+      <tash-form/>
+      <!-- <v-form
         ref="form"
         v-model="valid"
         lazy-validation
@@ -75,9 +75,9 @@
         ></v-checkbox>
 
       
-      </v-form>
+      </v-form> -->
     </v-app>
-      <div class="upload">
+      <!-- <div class="upload"> -->
         
         <!-- <v-file-input 
                 id="input-files" v-model="files" show-size counter  chips label="העלאת קבצים"></v-file-input>
@@ -89,7 +89,7 @@
         >
           העלה קובץ
         </v-btn> -->
-        <iframe src="https://appload-files.herokuapp.com/" frameborder="0" style="width: 20rem; height: 10rem"></iframe>
+        <!-- <iframe src="https://appload-files.herokuapp.com/" frameborder="0" style="width: 20rem; height: 10rem"></iframe>
       </div>
       <v-app class="btn-group">        
         <v-btn  
@@ -99,14 +99,15 @@
         >
           שלח
         </v-btn>
-      </v-app>
+      </v-app> -->
   </div>
 </template>
 
 <script>
+import TashForm from '@/components/TashForm'
 export default {
   name: 'App',
-  
+  components:{TashForm},
   data: () => ({
     familySelect: '',
     haveKidsSelect: '',
