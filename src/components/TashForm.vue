@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import TashFormArmySiblings from './TashFormArmySiblings.vue';
 import TashFormSoldierDetails from './TashFormSoldierDetails'
 import TashFormSoldierIndication from './TashFormSoldierIndication.vue';
 export default {
@@ -35,7 +36,7 @@ export default {
     sections: [
       { header: "א. פרטי החייל", component: TashFormSoldierDetails },
       { header: "ב. אינדיקציות חייל", component: TashFormSoldierIndication },
-      { header: "ג. אחים בצבא", component: "" },
+      { header: "ג. אחים בצבא", component: TashFormArmySiblings },
       { header: 'ד. האם החלת טיפול ת"ש בעבר', component: "" },
       { header: "ה. פרטי המשפחה(קרובים מדרגה ראשונה)", component: "" },
       { header: "ו. מערכת היחסית בבית", component: "" },
