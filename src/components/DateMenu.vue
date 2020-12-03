@@ -9,7 +9,7 @@
   >
     <template v-slot:activator="{ on, attrs }">
       <v-text-field
-        v-model="model"
+        v-model="value"
         :label="label"
         prepend-icon="mdi-calendar"
         readonly
@@ -25,7 +25,14 @@
 <script>
 export default {
   name: "DateMenu",
-  props: { model:()=>{return ''}, label:()=>{return ''}, dateModel:()=>{return ''} },
+  props: {
+    value: { default: () => undefined },
+    label: { type: String, default: () => "" },
+    dateModel: { type: String, default: () => new Date() },
+  },
+  data: () => ({
+    menu: false,
+  }),
 };
 </script>
 

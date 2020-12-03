@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-text-field
-      v-model="name"
+      v-model="soldierName"
       :counter="32"
       :rules="nameRules"
       label="שם מלא"
@@ -9,7 +9,7 @@
     />
     <v-text-field v-model="pernr" label="מספר אישי" required />
     <date-menu
-      :model="recruitDate"
+      v-model="recruitDate"
       label="תאריך גיוס"
       :date-model="new Date().toISOString().substr(0, 10)"
     />
@@ -28,16 +28,17 @@
           .substr(0, 10)
       "
     />
-    <form-select :items="familyStatusItems" :model="familyStatus" label="מצב משפחתי" required/>
-    <yes-no-question
-      @yes="isImigrate = true"
-      @no="isImigrate = false"
-      label="האם עלית לארץ?"
+    <form-select
+      :items="familyStatusItems"
+      v-model="familyStatus"
+      label="מצב משפחתי"
+      required
     />
+    <yes-no-question v-model="isImigrate" label="האם עלית לארץ?" />
     <div v-if="isImigrate">
       <!-- עלייה לארץ לאחר גיל 16 כן/לא - לחשב-->
       <date-menu
-        :model="immigrateDate"
+        v-model="immigrateDate"
         label="תאריך עלייה"
         :date-model="new Date().toISOString().substr(0, 10)"
       />
@@ -50,24 +51,27 @@
       v-model="address"
       label="כתובת: יישוב רחוב בית דירה כניסה מיקוד"
     />
-    <form-select :items="livingTypeItems" :model="livingType" label="סוג מגורים"/>
-    
-    <!-- 
-האם הנך חבר קיבוץ? כן/לא
-באם הנך חבר קיבוץ,האם הקיבוץ מופרט? כן/לא
-האם יש תחבורה ציבורית ליישובך? כן/לא -->
+    <form-select
+      :items="livingTypeItems"
+      v-model="livingType"
+      label="סוג מגורים"
+    />
   </div>
 </template>
 
 <script>
 import DateMenu from "./DateMenu.vue";
 import YesNoQuestion from "./YesNoQuestion.vue";
-import FormSelect from './FormSelect.vue';
+import FormSelect from "./FormSelect.vue";
 export default {
   name: "TashFormSoldierDetails",
   components: { DateMenu, YesNoQuestion, FormSelect },
   data: () => ({
-    familyStatusItems: ["רווק", "פרוד", "גרוש", "נשוי", "אלמן"],
+    nameRules: [
+      (v) => !!v || "נדרש להזין שם",
+      (v) => !(v && v.length <= 4) || "על השם להיות ארוך מ-4 תווים",
+    ],
+    familyStatusItems: ["רווק/ה", "פרוד/ה", "גרוש/ה", "נשוי/אה", "אלמן/ה"],
     livingTypeItems: [
       "החייל משלם שכר דירה",
       "דירה בבעלות החייל עליה משלם משכנתא",
@@ -80,6 +84,19 @@ export default {
       "אחר",
     ],
     isImigrate: false,
+    soldierName: "",
+    pernr: "",
+    recruitDate: new Date(),
+    prevUnit: "",
+    birthDate: new Date(new Date().setFullYear(new Date().getFullYear() - 18)),
+    familyStatus: "",
+    immigrateDate: "",
+    imigrateState: "",
+    parentImigrateState: "",
+    parentName: "",
+    parentNumber: "",
+    address: "",
+    livingType: "",
   }),
 };
 </script>

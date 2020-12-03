@@ -27,12 +27,14 @@
 
 <script>
 import TashFormSoldierDetails from './TashFormSoldierDetails'
+import TashFormSoldierIndication from './TashFormSoldierIndication.vue';
 export default {
   name: "TashForm",
   data: () => ({
+    valid: true,
     sections: [
       { header: "א. פרטי החייל", component: TashFormSoldierDetails },
-      { header: "ב. אינדיקציות חייל", component: "" },
+      { header: "ב. אינדיקציות חייל", component: TashFormSoldierIndication },
       { header: "ג. אחים בצבא", component: "" },
       { header: 'ד. האם החלת טיפול ת"ש בעבר', component: "" },
       { header: "ה. פרטי המשפחה(קרובים מדרגה ראשונה)", component: "" },
