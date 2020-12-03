@@ -21,12 +21,12 @@
   </v-form>
   <!-- הוחלט מעכשיו לעשות הכל מקוסטם - לפתח רק את הקומפוננטות הגנריות החדשות -->
   <!-- הקומפוננטות הגנריות -->
-  <!-- תיבת טקסט גדולה של כמה שורות -->
   <!-- טבלא של משפחה -->
 </template>
 
 <script>
 import TashFormArmySiblings from './TashFormArmySiblings.vue';
+import TashFormPreviousTash from './TashFormPreviousTash.vue';
 import TashFormSoldierDetails from './TashFormSoldierDetails'
 import TashFormSoldierIndication from './TashFormSoldierIndication.vue';
 export default {
@@ -37,7 +37,7 @@ export default {
       { header: "א. פרטי החייל", component: TashFormSoldierDetails },
       { header: "ב. אינדיקציות חייל", component: TashFormSoldierIndication },
       { header: "ג. אחים בצבא", component: TashFormArmySiblings },
-      { header: 'ד. האם החלת טיפול ת"ש בעבר', component: "" },
+      { header: 'ד. האם החלת טיפול ת"ש בעבר', component: TashFormPreviousTash },
       { header: "ה. פרטי המשפחה(קרובים מדרגה ראשונה)", component: "" },
       { header: "ו. מערכת היחסית בבית", component: "" },
       { header: "ז. המצב הכלכלי בבית", component: "" },
