@@ -27,7 +27,7 @@ export default {
   name: "DateMenu",
   props: {
     value: { default: () => undefined },
-    label: { type: String, default: () => "" },
+    label: { type: String, default: () => "",required:true },
     dateModel: { type: String, default: () => new Date() },
   },
   data: () => ({

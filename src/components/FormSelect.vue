@@ -22,14 +22,17 @@ export default {
   props: {
     value: {
       default: () => undefined,
+      required: true,
     },
     label: {
       type: String,
       default: () => "",
+      required: true,
     },
     items: {
       type: Array,
       default: () => [],
+      required: true,
     },
     required: {
       type: Boolean,

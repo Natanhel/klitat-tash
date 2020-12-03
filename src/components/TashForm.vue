@@ -25,10 +25,12 @@
 </template>
 
 <script>
-import TashFormArmySiblings from './TashFormArmySiblings.vue';
-import TashFormPreviousTash from './TashFormPreviousTash.vue';
-import TashFormSoldierDetails from './TashFormSoldierDetails'
-import TashFormSoldierIndication from './TashFormSoldierIndication.vue';
+import TashFormArmySiblings from "./TashFormArmySiblings.vue";
+import TashFormFamilyDetails from "./TashFormFamilyDetails.vue";
+import TashFormHomeRelation from "./TashFormHomeRelation.vue";
+import TashFormPreviousTash from "./TashFormPreviousTash.vue";
+import TashFormSoldierDetails from "./TashFormSoldierDetails";
+import TashFormSoldierIndication from "./TashFormSoldierIndication.vue";
 export default {
   name: "TashForm",
   data: () => ({
@@ -38,8 +40,11 @@ export default {
       { header: "ב. אינדיקציות חייל", component: TashFormSoldierIndication },
       { header: "ג. אחים בצבא", component: TashFormArmySiblings },
       { header: 'ד. האם החלת טיפול ת"ש בעבר', component: TashFormPreviousTash },
-      { header: "ה. פרטי המשפחה(קרובים מדרגה ראשונה)", component: "" },
-      { header: "ו. מערכת היחסית בבית", component: "" },
+      {
+        header: "ה. פרטי המשפחה(קרובים מדרגה ראשונה)",
+        component: TashFormFamilyDetails,
+      },
+      { header: "ו. מערכת היחסית בבית", component: TashFormHomeRelation },
       { header: "ז. המצב הכלכלי בבית", component: "" },
       { header: "ח. פרטים נוספים על החייל/ת", component: "" },
       { header: "ט. מצבם הרפואי של בני המשפחה", component: "" },

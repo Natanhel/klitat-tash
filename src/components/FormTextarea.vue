@@ -1,11 +1,14 @@
 <template>
-  <v-textarea v-model="value" :label="label" />
+  <v-textarea :value="value" :label="label" @change="$emit('input', value)" />
 </template>
 
 <script>
 export default {
   name: "FormTextArea",
-  props: { value: { defualt: () => "" }, label: { default: () => "" } },
+  props: {
+    value: { defualt: () => "", required: true },
+    label: { default: () => "" },
+  },
 };
 </script>
 
