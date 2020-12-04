@@ -27,6 +27,7 @@
 <script>
 import TashFormArmySiblings from "./TashFormArmySiblings.vue";
 import TashFormFamilyDetails from "./TashFormFamilyDetails.vue";
+import TashFormFamilyHealth from './TashFormFamilyHealth.vue';
 import TashFormFinancialHomeStatus from './TashFormFinancialHomeStatus.vue';
 import TashFormHomeRelation from "./TashFormHomeRelation.vue";
 import TashFormPreviousTash from "./TashFormPreviousTash.vue";
@@ -49,7 +50,7 @@ export default {
       { header: "ו. מערכת היחסית בבית", component: TashFormHomeRelation },
       { header: "ז. המצב הכלכלי בבית", component: TashFormFinancialHomeStatus },
       { header: "ח. פרטים נוספים על החייל/ת", component: TashFormSoldierExtraDetails },
-      { header: "ט. מצבם הרפואי של בני המשפחה", component: "" },
+      { header: "ט. מצבם הרפואי של בני המשפחה", component: TashFormFamilyHealth },
       {
         header: "י. חייל נשוי (סעיף זה מיועד עבור חייל נשוי בלבד)",
         component: "",
