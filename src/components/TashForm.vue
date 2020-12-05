@@ -30,6 +30,7 @@ import TashFormFamilyDetails from "./TashFormFamilyDetails.vue";
 import TashFormFamilyHealth from './TashFormFamilyHealth.vue';
 import TashFormFinancialHomeStatus from './TashFormFinancialHomeStatus.vue';
 import TashFormHomeRelation from "./TashFormHomeRelation.vue";
+import TashFormMarried from './TashFormMarried.vue';
 import TashFormPreviousTash from "./TashFormPreviousTash.vue";
 import TashFormSoldierDetails from "./TashFormSoldierDetails";
 import TashFormSoldierExtraDetails from './TashFormSoldierExtraDetails.vue';
@@ -53,7 +54,7 @@ export default {
       { header: "ט. מצבם הרפואי של בני המשפחה", component: TashFormFamilyHealth },
       {
         header: "י. חייל נשוי (סעיף זה מיועד עבור חייל נשוי בלבד)",
-        component: "",
+        component: TashFormMarried,
       },
       { header: "יא. במידה והינך מוכר כחייל בודד", component: "" },
       { header: "יב. אחר", component: "" },
