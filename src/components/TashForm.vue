@@ -32,6 +32,7 @@ import TashFormFinancialHomeStatus from './TashFormFinancialHomeStatus.vue';
 import TashFormHomeRelation from "./TashFormHomeRelation.vue";
 import TashFormLonely from './TashFormLonely.vue';
 import TashFormMarried from './TashFormMarried.vue';
+import TashFormOther from './TashFormOther.vue';
 import TashFormPreviousTash from "./TashFormPreviousTash.vue";
 import TashFormSoldierDetails from "./TashFormSoldierDetails";
 import TashFormSoldierExtraDetails from './TashFormSoldierExtraDetails.vue';
@@ -58,9 +59,9 @@ export default {
         component: TashFormMarried,
       },
       { header: "יא. במידה והינך מוכר כחייל בודד", component: TashFormLonely },
-      { header: "יב. אחר", component: "" },
+      { header: "יב. אחר", component: TashFormOther },
     ],
-    openedPanels: [0, 1, 4, 5, 6, 7, 8],
+    openedPanels: [0, 1, 4, 5, 6, 7, 8,11],
   }),
 };
 </script>
