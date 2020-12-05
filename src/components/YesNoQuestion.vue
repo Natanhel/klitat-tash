@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p class="text-center">{{ label }}</p>
+    <p class="label">{{ label }}</p>
     <v-btn-toggle rounded>
       <v-btn @change="$emit('input', true)"> כן </v-btn>
       <v-btn @change="$emit('input', false)"> לא </v-btn>
@@ -18,11 +18,15 @@ export default {
     label: {
       type: String,
       default: () => "",
-      required:true
+      required: true,
     },
   },
 };
 </script>
 
-<style>
+<style scoped>
+.label {
+  margin-bottom: 0;
+  padding-top:20px;
+}
 </style>

@@ -1,9 +1,9 @@
 <template>
-  <v-card>
+  <div>
     <v-text-field v-model="benfitRefused" label="אני חותם ויתור לבקשת" />
     <form-textarea v-model="benfitRefuseReason" label="מהסיבות הבאות:" />
     <form-signature-pad />
-  </v-card>
+  </div>
 </template>
 
 <script>
