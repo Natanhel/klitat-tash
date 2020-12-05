@@ -1,6 +1,6 @@
 <template>
-  <v-card>
-      <div>נא לחתום כאן:</div>
+  <div>
+    <div>נא לחתום כאן:</div>
     <div>
       <VueSignaturePad
         width="500px"
@@ -13,7 +13,7 @@
         <v-btn @click="save">שמור</v-btn>
       </div>
     </div>
-  </v-card>
+  </div>
 </template>
 
 <script>

@@ -19,7 +19,6 @@
       </v-expansion-panel>
     </v-expansion-panels>
     <div>שיהיה בהצלחה! אנו עומדים לשירותך בכל עת, משרד הת"ש</div>
-    <form-signature-pad />
     <v-btn color="success" class="mr-4" @click="validate"> שלח </v-btn>
   </v-form>
   <!-- הוחלט מעכשיו לעשות הכל מקוסטם - לפתח רק את הקומפוננטות הגנריות החדשות -->
@@ -28,7 +27,6 @@
 </template>
 
 <script>
-import FormSignaturePad from "./FormSignaturePad.vue";
 import TashFormArmySiblings from "./TashFormArmySiblings.vue";
 import TashFormFamilyDetails from "./TashFormFamilyDetails.vue";
 import TashFormFamilyHealth from "./TashFormFamilyHealth.vue";
@@ -38,13 +36,13 @@ import TashFormLonely from "./TashFormLonely.vue";
 import TashFormMarried from "./TashFormMarried.vue";
 import TashFormOther from "./TashFormOther.vue";
 import TashFormPreviousTash from "./TashFormPreviousTash.vue";
+import TashFormRefuse from './TashFormRefuse.vue';
 import TashFormSoldierDetails from "./TashFormSoldierDetails";
 import TashFormSoldierExtraDetails from "./TashFormSoldierExtraDetails.vue";
 import TashFormSoldierIndication from "./TashFormSoldierIndication.vue";
 export default {
-  components: { FormSignaturePad },
   name: "TashForm",
-  data: () => ({
+    data: () => ({
     valid: true,
     sections: [
       { header: "א. פרטי החייל", component: TashFormSoldierDetails },
@@ -71,6 +69,7 @@ export default {
       },
       { header: "יא. במידה והינך מוכר כחייל בודד", component: TashFormLonely },
       { header: "יב. אחר", component: TashFormOther },
+      { header: "ויתור על בקשות", component: TashFormRefuse },
     ],
     openedPanels: [0, 1, 4, 5, 6, 7, 8, 11],
   }),
