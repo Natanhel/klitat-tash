@@ -18,6 +18,7 @@
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
+    <form-signature-pad/>
     <div>שיהיה בהצלחה! אנו עומדים לשירותך בכל עת, משרד הת"ש</div>
     <v-btn color="success" class="mr-4" @click="validate"> שלח </v-btn>
   </v-form>
@@ -27,6 +28,7 @@
 </template>
 
 <script>
+import FormSignaturePad from "./FormSignaturePad.vue";
 import TashFormArmySiblings from "./TashFormArmySiblings.vue";
 import TashFormFamilyDetails from "./TashFormFamilyDetails.vue";
 import TashFormFamilyHealth from "./TashFormFamilyHealth.vue";
@@ -42,6 +44,7 @@ import TashFormSoldierExtraDetails from "./TashFormSoldierExtraDetails.vue";
 import TashFormSoldierIndication from "./TashFormSoldierIndication.vue";
 export default {
   name: "TashForm",
+  components:{FormSignaturePad},
     data: () => ({
     valid: true,
     sections: [

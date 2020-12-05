@@ -3,10 +3,8 @@
     <div>נא לחתום כאן:</div>
     <div>
       <VueSignaturePad
-        width="500px"
         height="200px"
         ref="signaturePad"
-        style="z-index: 300"
       />
       <div>
         <v-btn @click="clear">נקה</v-btn>
