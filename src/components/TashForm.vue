@@ -14,11 +14,12 @@
           section.header
         }}</v-expansion-panel-header>
         <v-expansion-panel-content>
-          <component :is="section.component" />
+          <component :is="section.component" @toggle-indication='toggleIndication'/>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
-    <form-signature-pad/>
+    <form-signature-pad />
+    <tash-form-benefit-selection :showIndication="showIndication" />
     <div>שיהיה בהצלחה! אנו עומדים לשירותך בכל עת, משרד הת"ש</div>
     <v-btn color="success" class="mr-4" @click="validate"> שלח </v-btn>
   </v-form>
@@ -30,6 +31,7 @@
 <script>
 import FormSignaturePad from "./FormSignaturePad.vue";
 import TashFormArmySiblings from "./TashFormArmySiblings.vue";
+import TashFormBenefitSelection from './TashFormBenefitSelection.vue';
 import TashFormFamilyDetails from "./TashFormFamilyDetails.vue";
 import TashFormFamilyHealth from "./TashFormFamilyHealth.vue";
 import TashFormFinancialHomeStatus from "./TashFormFinancialHomeStatus.vue";
@@ -38,14 +40,14 @@ import TashFormLonely from "./TashFormLonely.vue";
 import TashFormMarried from "./TashFormMarried.vue";
 import TashFormOther from "./TashFormOther.vue";
 import TashFormPreviousTash from "./TashFormPreviousTash.vue";
-import TashFormRefuse from './TashFormRefuse.vue';
+import TashFormRefuse from "./TashFormRefuse.vue";
 import TashFormSoldierDetails from "./TashFormSoldierDetails";
 import TashFormSoldierExtraDetails from "./TashFormSoldierExtraDetails.vue";
 import TashFormSoldierIndication from "./TashFormSoldierIndication.vue";
 export default {
   name: "TashForm",
-  components:{FormSignaturePad},
-    data: () => ({
+  components: { FormSignaturePad, TashFormBenefitSelection },
+  data: () => ({
     valid: true,
     sections: [
       { header: "א. פרטי החייל", component: TashFormSoldierDetails },
@@ -75,11 +77,15 @@ export default {
       { header: "ויתור על בקשות", component: TashFormRefuse },
     ],
     openedPanels: [0, 1, 4, 5, 6, 7, 8, 11],
+    showIndication: false,
   }),
   methods: {
     validate() {
       this.$refs.form.validate();
     },
+    toggleIndication(){
+      this.showIndication = !this.showIndication
+    }
   },
 };
 </script>

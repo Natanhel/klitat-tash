@@ -3,6 +3,7 @@
     <yes-no-question
       v-model="isFamilyHealthIssue"
       label="האם אחד מבני משפחת סובל מבעיה רפואית?"
+      @input="$emit('toggle-indication')"
     />
     <div v-if="isFamilyHealthIssue">
       <v-text-field v-model="familyHealthIssueCloseness" label="מה הקרבה?" />
