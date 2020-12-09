@@ -3,6 +3,7 @@
     <div>נא לחתום כאן:</div>
     <div>
       <VueSignaturePad
+        id="signature"
         height="200px"
         ref="signaturePad"
       />
@@ -32,5 +33,13 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+#signature {
+  border: double 3px transparent;
+  border-radius: 5px;
+  background-image: linear-gradient(white, white),
+    radial-gradient(circle at top left, purple, #9f6274);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+}
 </style>

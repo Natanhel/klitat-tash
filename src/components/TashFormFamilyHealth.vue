@@ -23,7 +23,7 @@
     />
     <div v-if="familyIncapable">
       <v-text-field v-model="familyIncapableCloseness" label="מה הקרבה?" />
-      <date-menu v-model="familyIncapableDeathYear" label="שנת פטירה:" />
+      <date-menu v-model="familyIncapableDeathYear" label="שנת פטירה:" :dateModel="familyIncapableDeathYear"/>
     </div>
   </div>
 </template>
