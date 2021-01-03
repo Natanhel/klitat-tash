@@ -1,0 +1,8 @@
+.git
+.DS_Store
+node_modules
+dist
+npm-debug.log
+
+# used for dev
+.env
